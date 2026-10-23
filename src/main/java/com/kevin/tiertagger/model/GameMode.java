@@ -1,5 +1,6 @@
 package com.kevin.tiertagger.model;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.kevin.tiertagger.TierTagger;
 import it.unimi.dsi.fastutil.Pair;
@@ -11,6 +12,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -19,12 +21,24 @@ public record GameMode(String id, String title) {
     public static final GameMode NONE = new GameMode("annoying_long_id_that_no_one_will_ever_use_just_to_make_sure", "§cNone§r");
 
     public static CompletableFuture<List<GameMode>> fetchGamemodes(HttpClient client) {
-        String endpoint = TierTagger.getManager().getConfig().getApiUrl() + "/v2/mode/list";
+        String apiUrl = TierTagger.getManager().getConfig().getApiUrl();
+        boolean mctiersAsia = TierList.isMctiersAsia(apiUrl);
+        String endpoint = apiUrl + (mctiersAsia ? "/gamemodes" : "/v2/mode/list");
         final HttpRequest request = HttpRequest.newBuilder(URI.create(endpoint)).GET().build();
 
         return client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(r -> {
                     JsonObject obj = TierTagger.GSON.fromJson(r.body(), JsonObject.class);
+
+                    if (mctiersAsia) {
+                        JsonArray gamemodes = obj.getAsJsonArray("gamemodes");
+                        List<GameMode> modes = new ArrayList<>(gamemodes.size());
+                        gamemodes.forEach(element -> {
+                            JsonObject gamemode = element.getAsJsonObject();
+                            modes.add(new GameMode(gamemode.get("slug").getAsString(), gamemode.get("name").getAsString()));
+                        });
+                        return modes;
+                    }
 
                     return obj.entrySet().stream().map(e -> {
                         String title = e.getValue().getAsJsonObject().get("title").getAsString();

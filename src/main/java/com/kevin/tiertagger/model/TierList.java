@@ -10,6 +10,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public enum TierList {
     MCTIERS("MCTiers", "https://mctiers.com/api", '\uE901'),
+    MCTIERS_ASIA("MCTiers Asia", "https://mctiers.asia/api", '\uE901'),
     SUBTIERS("SubTiers", "https://subtiers.net/api", '\uE902'),
     ;
 
@@ -28,5 +29,9 @@ public enum TierList {
 
         final String finalUrl = url; // i :heart: java
         return Arrays.stream(values()).filter(list -> list.url.equals(finalUrl)).findFirst();
+    }
+
+    public static boolean isMctiersAsia(String url) {
+        return findByUrl(url).filter(list -> list == MCTIERS_ASIA).isPresent();
     }
 }
