@@ -153,6 +153,62 @@
       "ascent": 10,
       "height": 12,
       "chars": ["\uE902"]
+    },
+    {
+      "type": "bitmap",
+      "file": "tier-tagger:mctiers_asia/axe.png",
+      "ascent": 8,
+      "height": 8,
+      "chars": ["\uE821"]
+    },
+    {
+      "type": "bitmap",
+      "file": "tier-tagger:mctiers_asia/mace.png",
+      "ascent": 8,
+      "height": 8,
+      "chars": ["\uE822"]
+    },
+    {
+      "type": "bitmap",
+      "file": "tier-tagger:mctiers_asia/nethop.png",
+      "ascent": 8,
+      "height": 8,
+      "chars": ["\uE823"]
+    },
+    {
+      "type": "bitmap",
+      "file": "tier-tagger:mctiers_asia/pot.png",
+      "ascent": 8,
+      "height": 8,
+      "chars": ["\uE824"]
+    },
+    {
+      "type": "bitmap",
+      "file": "tier-tagger:mctiers_asia/smp.png",
+      "ascent": 8,
+      "height": 8,
+      "chars": ["\uE825"]
+    },
+    {
+      "type": "bitmap",
+      "file": "tier-tagger:mctiers_asia/sword.png",
+      "ascent": 8,
+      "height": 8,
+      "chars": ["\uE826"]
+    },
+    {
+      "type": "bitmap",
+      "file": "tier-tagger:mctiers_asia/uhc.png",
+      "ascent": 8,
+      "height": 8,
+      "chars": ["\uE827"]
+    },
+    {
+      "type": "bitmap",
+      "file": "tier-tagger:mctiers_asia/vanilla.png",
+      "ascent": 8,
+      "height": 8,
+      "chars": ["\uE828"]
     }
   ]
 }

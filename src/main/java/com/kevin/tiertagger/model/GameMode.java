@@ -52,6 +52,10 @@ public record GameMode(String id, String title) {
     }
 
     private Pair<Character, TextColor> iconAndColor() {
+        if (TierList.isMctiersAsia(TierTagger.getManager().getConfig().getApiUrl())) {
+            return mctiersAsiaIconAndColor();
+        }
+
         return switch (this.id) {
             case "axe" -> Pair.of('\uE701', TextColor.fromLegacyFormat(ChatFormatting.GREEN));
             case "mace" -> Pair.of('\uE702', TextColor.fromLegacyFormat(ChatFormatting.GRAY));
@@ -73,6 +77,20 @@ public record GameMode(String id, String title) {
             case "og_vanilla" -> Pair.of('\uE810', TextColor.fromLegacyFormat(ChatFormatting.GOLD));
             case "speed" -> Pair.of('\uE811', TextColor.fromRgb(0x43a9d1));
             case "trident" -> Pair.of('\uE812', TextColor.fromRgb(0x579b8c));
+            default -> Pair.of('•', TextColor.fromLegacyFormat(ChatFormatting.WHITE));
+        };
+    }
+
+    private Pair<Character, TextColor> mctiersAsiaIconAndColor() {
+        return switch (this.id) {
+            case "axe" -> Pair.of('\uE821', TextColor.fromLegacyFormat(ChatFormatting.GREEN));
+            case "mace" -> Pair.of('\uE822', TextColor.fromLegacyFormat(ChatFormatting.GRAY));
+            case "nethop", "neth_pot" -> Pair.of('\uE823', TextColor.fromRgb(0x7d4a40));
+            case "pot" -> Pair.of('\uE824', TextColor.fromRgb(0xff0000));
+            case "smp" -> Pair.of('\uE825', TextColor.fromRgb(0xeccb45));
+            case "sword" -> Pair.of('\uE826', TextColor.fromRgb(0xa4fdf0));
+            case "uhc" -> Pair.of('\uE827', TextColor.fromLegacyFormat(ChatFormatting.RED));
+            case "vanilla" -> Pair.of('\uE828', TextColor.fromLegacyFormat(ChatFormatting.LIGHT_PURPLE));
             default -> Pair.of('•', TextColor.fromLegacyFormat(ChatFormatting.WHITE));
         };
     }
