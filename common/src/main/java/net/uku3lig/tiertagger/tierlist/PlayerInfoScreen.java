@@ -51,8 +51,11 @@ public class PlayerInfoScreen extends CloseableScreen {
             text.setX(this.width / 2 + 5);
             text.setY(rankingY);
 
-            String date = DateTimeFormatter.ISO_LOCAL_DATE.withZone(ZoneOffset.UTC).format(Instant.ofEpochSecond(namedRanking.ranking().attained()));
-            Component tooltipText = Component.literal("Attained: " + date + "\nPoints: " + points(namedRanking.ranking())).withStyle(ChatFormatting.GRAY);
+            String tooltip = namedRanking.ranking().attained() > 0
+                    ? "Attained: " + DateTimeFormatter.ISO_LOCAL_DATE.withZone(ZoneOffset.UTC)
+                    .format(Instant.ofEpochSecond(namedRanking.ranking().attained())) + "\n"
+                    : "";
+            Component tooltipText = Component.literal(tooltip + "Points: " + points(namedRanking.ranking())).withStyle(ChatFormatting.GRAY);
             text.setTooltip(Tooltip.create(tooltipText));
             this.addRenderableWidget(text);
             rankingY += 11;
