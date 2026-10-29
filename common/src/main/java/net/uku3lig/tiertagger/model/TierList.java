@@ -27,6 +27,8 @@ public enum TierList {
     public static Optional<TierList> findByUrl(String url) {
         if (url.endsWith("/")) url = url.substring(0, url.length() - 1);
 
+        if (url.equals("https://mctiers.net/api")) return Optional.of(MCTIERS);
+
         final String finalUrl = url; // i :heart: java
         return Arrays.stream(values()).filter(list -> list.url.equals(finalUrl)).findFirst();
     }
