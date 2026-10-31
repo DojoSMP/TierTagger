@@ -91,6 +91,8 @@ public record GameMode(String id, String title) {
             case "sword" -> Pair.of('\uE826', TextColor.fromRgb(0xa4fdf0));
             case "uhc" -> Pair.of('\uE827', TextColor.fromLegacyFormat(ChatFormatting.RED));
             case "vanilla" -> Pair.of('\uE828', TextColor.fromLegacyFormat(ChatFormatting.LIGHT_PURPLE));
+            case "spearmace" -> Pair.of('\uE829', TextColor.fromRgb(0x997DAD));
+            case "diasmp" -> Pair.of('\uE830', TextColor.fromRgb(0x42D6D0));
             default -> Pair.of('•', TextColor.fromLegacyFormat(ChatFormatting.WHITE));
         };
     }
