@@ -209,6 +209,20 @@
       "ascent": 8,
       "height": 8,
       "chars": ["\uE828"]
+    },
+    {
+      "type": "bitmap",
+      "file": "tier-tagger:mctiers_asia/spearmace.png",
+      "ascent": 8,
+      "height": 8,
+      "chars": ["\uE829"]
+    },
+    {
+      "type": "bitmap",
+      "file": "tier-tagger:mctiers_asia/diasmp.png",
+      "ascent": 8,
+      "height": 8,
+      "chars": ["\uE830"]
     }
   ]
 }
