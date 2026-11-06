@@ -2,6 +2,7 @@ package net.uku3lig.tiertagger.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import net.minecraft.network.chat.Component;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -9,7 +10,7 @@ import java.util.Optional;
 @Getter
 @AllArgsConstructor
 public enum TierList {
-    MCTIERS("MCTiers", "https://mctiers.com/api", '\uE901'),
+    MCTIERS("MCTiers", "https://mctiers.net/api", '\uE901'),
     MCTIERS_ASIA("MCTiers Asia", "https://mctiers.asia/api", '\uE901'),
     SUBTIERS("SubTiers", "https://subtiers.net/api", '\uE902'),
     ;
@@ -18,10 +19,12 @@ public enum TierList {
     private final String url;
     private final char icon;
 
-    public String styledName(boolean current) {
-        String s = icon + " " + name;
-        if (current) s += " (selected)";
-        return s;
+    public Component styledName(boolean current) {
+        if (current) {
+            return Component.translatable("tiertagger.config.selectedTL", icon, name);
+        } else {
+            return Component.literal(icon + " " + name);
+        }
     }
 
     public static Optional<TierList> findByUrl(String url) {
